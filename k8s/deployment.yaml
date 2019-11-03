@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8schallenge
+  namespace: k8s-challenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8schallenge
+  template:
+    metadata:
+      labels:
+        app: k8schallenge
+    spec:
+      containers:
+        - name: k8schallenge
+          image: k8schallenge:1.0
+          ports:
+              - containerPort: 4000
+          readinessProbe:
+            httpGet:
+              port: 4000
+          resources:
+            limits:
+              cpu: 0.10
+              memory: 256Mi
+          env:
+            - name: NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: k8schallenge-configmap
+                  key: my-name

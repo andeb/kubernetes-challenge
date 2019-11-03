@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8schallenge
+  namespace: k8s-challenge
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: k8schallenge
+              servicePort: 80

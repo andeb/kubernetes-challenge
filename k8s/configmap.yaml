@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8schallenge-configmap
+  namespace: k8s-challenge
+  labels:
+    app: k8schallenge
+data:
+  my-name: 'Anderson'
